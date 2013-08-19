@@ -1,4 +1,4 @@
-// $ANTLR 3.5 /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g 2013-08-17 19:19:07
+// $ANTLR 3.5 /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g 2013-08-17 22:05:27
 
 package tops.parser;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class ToPSParser extends Parser {
 	public static final String[] tokenNames = new String[] {
 		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "ESC_SEQ", "EXPONENT", "FLOAT", 
 		"HEX_DIGIT", "ID", "INT", "LINE_COMMENT", "OCTAL_ESC", "STRING", "UNICODE_ESC", 
-		"WS", "'('", "')'", "':'", "';'", "'='", "'['", "']'", "'|'"
+		"WS", "'('", "')'", "','", "':'", "';'", "'='", "'['", "']'", "'|'"
 	};
 	public static final int EOF=-1;
 	public static final int T__15=15;
@@ -27,6 +27,7 @@ public class ToPSParser extends Parser {
 	public static final int T__20=20;
 	public static final int T__21=21;
 	public static final int T__22=22;
+	public static final int T__23=23;
 	public static final int ESC_SEQ=4;
 	public static final int EXPONENT=5;
 	public static final int FLOAT=6;
@@ -62,6 +63,7 @@ public class ToPSParser extends Parser {
 	private ProbabilisticModelParameterValue current_parameter;
 	private ArrayList<String> strlst;
 	private ArrayList<Double> dbllst;
+	private HashMap<String,Double> dblmap;
 	public ProbabilisticModelParameters getParameters() {
 	  return parameters;
 	}
@@ -70,11 +72,11 @@ public class ToPSParser extends Parser {
 
 
 	// $ANTLR start "model"
-	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:27:1: model : properties ;
+	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:28:1: model : properties ;
 	public final void model() throws RecognitionException {
 		try {
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:27:7: ( properties )
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:27:9: properties
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:28:7: ( properties )
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:28:9: properties
 			{
 			pushFollow(FOLLOW_properties_in_model40);
 			properties();
@@ -96,13 +98,13 @@ public class ToPSParser extends Parser {
 
 
 	// $ANTLR start "properties"
-	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:29:1: properties : ( property )+ ;
+	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:30:1: properties : ( property )+ ;
 	public final void properties() throws RecognitionException {
 		try {
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:30:2: ( ( property )+ )
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:30:4: ( property )+
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:31:2: ( ( property )+ )
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:31:4: ( property )+
 			{
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:30:4: ( property )+
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:31:4: ( property )+
 			int cnt1=0;
 			loop1:
 			while (true) {
@@ -114,7 +116,7 @@ public class ToPSParser extends Parser {
 
 				switch (alt1) {
 				case 1 :
-					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:30:4: property
+					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:31:4: property
 					{
 					pushFollow(FOLLOW_property_in_properties51);
 					property();
@@ -148,16 +150,16 @@ public class ToPSParser extends Parser {
 
 
 	// $ANTLR start "property"
-	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:32:1: property : ID '=' value ;
+	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:33:1: property : ID '=' value ;
 	public final void property() throws RecognitionException {
 		Token ID1=null;
 
 		try {
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:32:9: ( ID '=' value )
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:32:11: ID '=' value
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:33:9: ( ID '=' value )
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:33:11: ID '=' value
 			{
 			ID1=(Token)match(input,ID,FOLLOW_ID_in_property61); if (state.failed) return;
-			match(input,19,FOLLOW_19_in_property63); if (state.failed) return;
+			match(input,20,FOLLOW_20_in_property63); if (state.failed) return;
 			pushFollow(FOLLOW_value_in_property65);
 			value();
 			state._fsp--;
@@ -179,14 +181,14 @@ public class ToPSParser extends Parser {
 
 
 	// $ANTLR start "value"
-	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:34:1: value : ( STRING | INT | FLOAT | list_str | list_double | probability_map | conditional_probability_map | sub_model | ID );
+	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:35:1: value : ( STRING | INT | FLOAT | list_str | list_double | probability_map | conditional_probability_map | sub_model | ID );
 	public final void value() throws RecognitionException {
 		Token STRING2=null;
 		Token INT3=null;
 		Token FLOAT4=null;
 
 		try {
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:34:7: ( STRING | INT | FLOAT | list_str | list_double | probability_map | conditional_probability_map | sub_model | ID )
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:35:7: ( STRING | INT | FLOAT | list_str | list_double | probability_map | conditional_probability_map | sub_model | ID )
 			int alt2=9;
 			switch ( input.LA(1) ) {
 			case STRING:
@@ -209,18 +211,18 @@ public class ToPSParser extends Parser {
 				int LA2_4 = input.LA(2);
 				if ( (LA2_4==STRING) ) {
 					switch ( input.LA(3) ) {
-					case 17:
+					case 18:
 						{
 						alt2=6;
 						}
 						break;
-					case 22:
+					case 23:
 						{
 						alt2=7;
 						}
 						break;
-					case STRING:
 					case 16:
+					case 17:
 						{
 						alt2=4;
 						}
@@ -240,7 +242,7 @@ public class ToPSParser extends Parser {
 						}
 					}
 				}
-				else if ( (LA2_4==FLOAT||LA2_4==16) ) {
+				else if ( (LA2_4==FLOAT) ) {
 					alt2=5;
 				}
 
@@ -259,7 +261,7 @@ public class ToPSParser extends Parser {
 
 				}
 				break;
-			case 20:
+			case 21:
 				{
 				alt2=8;
 				}
@@ -277,38 +279,38 @@ public class ToPSParser extends Parser {
 			}
 			switch (alt2) {
 				case 1 :
-					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:34:9: STRING
+					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:35:9: STRING
 					{
 					STRING2=(Token)match(input,STRING,FOLLOW_STRING_in_value75); if (state.failed) return;
 					if ( state.backtracking==0 ) {current_parameter = (new StringParameterValue((STRING2!=null?STRING2.getText():null))).removeQuotes(); }
 					}
 					break;
 				case 2 :
-					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:35:4: INT
+					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:36:4: INT
 					{
 					INT3=(Token)match(input,INT,FOLLOW_INT_in_value82); if (state.failed) return;
 					if ( state.backtracking==0 ) {current_parameter = new IntParameterValue(Integer.parseInt((INT3!=null?INT3.getText():null)));}
 					}
 					break;
 				case 3 :
-					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:36:4: FLOAT
+					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:37:4: FLOAT
 					{
 					FLOAT4=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_value89); if (state.failed) return;
 					if ( state.backtracking==0 ) {current_parameter = new DoubleParameterValue(Double.parseDouble((FLOAT4!=null?FLOAT4.getText():null)));}
 					}
 					break;
 				case 4 :
-					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:37:4: list_str
+					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:38:4: list_str
 					{
 					pushFollow(FOLLOW_list_str_in_value96);
 					list_str();
 					state._fsp--;
 					if (state.failed) return;
-					if ( state.backtracking==0 ) {current_parameter = new StringVectorParameterValue(strlst);}
+					if ( state.backtracking==0 ) {current_parameter = (new StringVectorParameterValue(strlst)).removeQuotes();}
 					}
 					break;
 				case 5 :
-					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:38:4: list_double
+					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:39:4: list_double
 					{
 					pushFollow(FOLLOW_list_double_in_value103);
 					list_double();
@@ -318,36 +320,38 @@ public class ToPSParser extends Parser {
 					}
 					break;
 				case 6 :
-					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:39:4: probability_map
+					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:40:4: probability_map
 					{
 					pushFollow(FOLLOW_probability_map_in_value110);
 					probability_map();
 					state._fsp--;
 					if (state.failed) return;
+					if ( state.backtracking==0 ) {current_parameter = (new DoubleMapParameterValue(dblmap)).removeQuotes();}
 					}
 					break;
 				case 7 :
-					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:40:4: conditional_probability_map
+					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:41:4: conditional_probability_map
 					{
-					pushFollow(FOLLOW_conditional_probability_map_in_value115);
+					pushFollow(FOLLOW_conditional_probability_map_in_value117);
 					conditional_probability_map();
 					state._fsp--;
 					if (state.failed) return;
+					if ( state.backtracking==0 ) {current_parameter = (new DoubleMapParameterValue(dblmap)).removeQuotes();}
 					}
 					break;
 				case 8 :
-					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:41:4: sub_model
+					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:42:4: sub_model
 					{
-					pushFollow(FOLLOW_sub_model_in_value120);
+					pushFollow(FOLLOW_sub_model_in_value124);
 					sub_model();
 					state._fsp--;
 					if (state.failed) return;
 					}
 					break;
 				case 9 :
-					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:42:4: ID
+					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:43:4: ID
 					{
-					match(input,ID,FOLLOW_ID_in_value125); if (state.failed) return;
+					match(input,ID,FOLLOW_ID_in_value129); if (state.failed) return;
 					}
 					break;
 
@@ -366,18 +370,18 @@ public class ToPSParser extends Parser {
 
 
 	// $ANTLR start "list_double"
-	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:45:1: list_double : '(' list_double_elements ')' ;
+	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:46:1: list_double : '(' list_double_elements ')' ;
 	public final void list_double() throws RecognitionException {
 		try {
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:46:2: ( '(' list_double_elements ')' )
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:46:5: '(' list_double_elements ')'
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:47:2: ( '(' list_double_elements ')' )
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:47:5: '(' list_double_elements ')'
 			{
-			match(input,15,FOLLOW_15_in_list_double139); if (state.failed) return;
-			pushFollow(FOLLOW_list_double_elements_in_list_double141);
+			match(input,15,FOLLOW_15_in_list_double143); if (state.failed) return;
+			pushFollow(FOLLOW_list_double_elements_in_list_double145);
 			list_double_elements();
 			state._fsp--;
 			if (state.failed) return;
-			match(input,16,FOLLOW_16_in_list_double143); if (state.failed) return;
+			match(input,16,FOLLOW_16_in_list_double147); if (state.failed) return;
 			}
 
 		}
@@ -394,75 +398,44 @@ public class ToPSParser extends Parser {
 
 
 	// $ANTLR start "list_double_elements"
-	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:48:1: list_double_elements : ( FLOAT | ( list_double_element )* );
+	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:49:1: list_double_elements : FLOAT ( ',' list_double_element )* ;
 	public final void list_double_elements() throws RecognitionException {
 		Token FLOAT5=null;
 
 		try {
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:49:2: ( FLOAT | ( list_double_element )* )
-			int alt4=2;
-			int LA4_0 = input.LA(1);
-			if ( (LA4_0==FLOAT) ) {
-				int LA4_1 = input.LA(2);
-				if ( (synpred10_ToPS()) ) {
-					alt4=1;
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:50:2: ( FLOAT ( ',' list_double_element )* )
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:50:4: FLOAT ( ',' list_double_element )*
+			{
+			FLOAT5=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_list_double_elements158); if (state.failed) return;
+			if ( state.backtracking==0 ) {dbllst = new ArrayList<Double>(); dbllst.add(Double.parseDouble((FLOAT5!=null?FLOAT5.getText():null))); }
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:50:92: ( ',' list_double_element )*
+			loop3:
+			while (true) {
+				int alt3=2;
+				int LA3_0 = input.LA(1);
+				if ( (LA3_0==17) ) {
+					alt3=1;
 				}
-				else if ( (true) ) {
-					alt4=2;
-				}
 
-			}
-			else if ( (LA4_0==16) ) {
-				alt4=2;
-			}
-
-			else {
-				if (state.backtracking>0) {state.failed=true; return;}
-				NoViableAltException nvae =
-					new NoViableAltException("", 4, 0, input);
-				throw nvae;
-			}
-
-			switch (alt4) {
+				switch (alt3) {
 				case 1 :
-					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:49:4: FLOAT
+					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:50:93: ',' list_double_element
 					{
-					FLOAT5=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_list_double_elements154); if (state.failed) return;
-					if ( state.backtracking==0 ) {dbllst = new ArrayList<Double>(); dbllst.add(Double.parseDouble((FLOAT5!=null?FLOAT5.getText():null))); }
+					match(input,17,FOLLOW_17_in_list_double_elements163); if (state.failed) return;
+					pushFollow(FOLLOW_list_double_element_in_list_double_elements165);
+					list_double_element();
+					state._fsp--;
+					if (state.failed) return;
 					}
 					break;
-				case 2 :
-					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:50:4: ( list_double_element )*
-					{
-					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:50:4: ( list_double_element )*
-					loop3:
-					while (true) {
-						int alt3=2;
-						int LA3_0 = input.LA(1);
-						if ( (LA3_0==FLOAT) ) {
-							alt3=1;
-						}
 
-						switch (alt3) {
-						case 1 :
-							// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:50:4: list_double_element
-							{
-							pushFollow(FOLLOW_list_double_element_in_list_double_elements161);
-							list_double_element();
-							state._fsp--;
-							if (state.failed) return;
-							}
-							break;
-
-						default :
-							break loop3;
-						}
-					}
-
-					}
-					break;
+				default :
+					break loop3;
+				}
+			}
 
 			}
+
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -477,15 +450,15 @@ public class ToPSParser extends Parser {
 
 
 	// $ANTLR start "list_double_element"
-	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:52:1: list_double_element : FLOAT ;
+	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:53:1: list_double_element : FLOAT ;
 	public final void list_double_element() throws RecognitionException {
 		Token FLOAT6=null;
 
 		try {
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:53:2: ( FLOAT )
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:53:4: FLOAT
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:54:2: ( FLOAT )
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:54:4: FLOAT
 			{
-			FLOAT6=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_list_double_element174); if (state.failed) return;
+			FLOAT6=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_list_double_element187); if (state.failed) return;
 			if ( state.backtracking==0 ) {dbllst.add(Double.parseDouble((FLOAT6!=null?FLOAT6.getText():null)));}
 			}
 
@@ -503,18 +476,18 @@ public class ToPSParser extends Parser {
 
 
 	// $ANTLR start "list_str"
-	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:56:1: list_str : '(' list_str_elements ')' ;
+	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:57:1: list_str : '(' list_str_elements ')' ;
 	public final void list_str() throws RecognitionException {
 		try {
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:56:11: ( '(' list_str_elements ')' )
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:56:14: '(' list_str_elements ')'
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:57:11: ( '(' list_str_elements ')' )
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:57:14: '(' list_str_elements ')'
 			{
-			match(input,15,FOLLOW_15_in_list_str190); if (state.failed) return;
-			pushFollow(FOLLOW_list_str_elements_in_list_str192);
+			match(input,15,FOLLOW_15_in_list_str203); if (state.failed) return;
+			pushFollow(FOLLOW_list_str_elements_in_list_str205);
 			list_str_elements();
 			state._fsp--;
 			if (state.failed) return;
-			match(input,16,FOLLOW_16_in_list_str194); if (state.failed) return;
+			match(input,16,FOLLOW_16_in_list_str207); if (state.failed) return;
 			}
 
 		}
@@ -531,30 +504,31 @@ public class ToPSParser extends Parser {
 
 
 	// $ANTLR start "list_str_elements"
-	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:58:1: list_str_elements : STRING ( list_str_element )* ;
+	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:59:1: list_str_elements : STRING ( ',' list_str_element )* ;
 	public final void list_str_elements() throws RecognitionException {
 		Token STRING7=null;
 
 		try {
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:58:19: ( STRING ( list_str_element )* )
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:58:21: STRING ( list_str_element )*
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:59:19: ( STRING ( ',' list_str_element )* )
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:59:21: STRING ( ',' list_str_element )*
 			{
-			STRING7=(Token)match(input,STRING,FOLLOW_STRING_in_list_str_elements204); if (state.failed) return;
+			STRING7=(Token)match(input,STRING,FOLLOW_STRING_in_list_str_elements217); if (state.failed) return;
 			if ( state.backtracking==0 ) {strlst = new ArrayList<String>(); strlst.add((STRING7!=null?STRING7.getText():null));}
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:58:90: ( list_str_element )*
-			loop5:
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:59:90: ( ',' list_str_element )*
+			loop4:
 			while (true) {
-				int alt5=2;
-				int LA5_0 = input.LA(1);
-				if ( (LA5_0==STRING) ) {
-					alt5=1;
+				int alt4=2;
+				int LA4_0 = input.LA(1);
+				if ( (LA4_0==17) ) {
+					alt4=1;
 				}
 
-				switch (alt5) {
+				switch (alt4) {
 				case 1 :
-					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:58:90: list_str_element
+					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:59:91: ',' list_str_element
 					{
-					pushFollow(FOLLOW_list_str_element_in_list_str_elements208);
+					match(input,17,FOLLOW_17_in_list_str_elements222); if (state.failed) return;
+					pushFollow(FOLLOW_list_str_element_in_list_str_elements224);
 					list_str_element();
 					state._fsp--;
 					if (state.failed) return;
@@ -562,7 +536,7 @@ public class ToPSParser extends Parser {
 					break;
 
 				default :
-					break loop5;
+					break loop4;
 				}
 			}
 
@@ -582,15 +556,15 @@ public class ToPSParser extends Parser {
 
 
 	// $ANTLR start "list_str_element"
-	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:60:1: list_str_element : STRING ;
+	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:61:1: list_str_element : STRING ;
 	public final void list_str_element() throws RecognitionException {
 		Token STRING8=null;
 
 		try {
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:61:2: ( STRING )
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:61:4: STRING
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:62:2: ( STRING )
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:62:4: STRING
 			{
-			STRING8=(Token)match(input,STRING,FOLLOW_STRING_in_list_str_element220); if (state.failed) return;
+			STRING8=(Token)match(input,STRING,FOLLOW_STRING_in_list_str_element237); if (state.failed) return;
 			if ( state.backtracking==0 ) {strlst.add((STRING8!=null?STRING8.getText():null));}
 			}
 
@@ -608,18 +582,18 @@ public class ToPSParser extends Parser {
 
 
 	// $ANTLR start "probability_map"
-	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:64:1: probability_map : '(' probabilities_list ')' ;
+	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:65:1: probability_map : '(' probabilities_list ')' ;
 	public final void probability_map() throws RecognitionException {
 		try {
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:64:17: ( '(' probabilities_list ')' )
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:64:19: '(' probabilities_list ')'
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:65:17: ( '(' probabilities_list ')' )
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:65:19: '(' probabilities_list ')'
 			{
-			match(input,15,FOLLOW_15_in_probability_map232); if (state.failed) return;
-			pushFollow(FOLLOW_probabilities_list_in_probability_map234);
+			match(input,15,FOLLOW_15_in_probability_map249); if (state.failed) return;
+			pushFollow(FOLLOW_probabilities_list_in_probability_map251);
 			probabilities_list();
 			state._fsp--;
 			if (state.failed) return;
-			match(input,16,FOLLOW_16_in_probability_map236); if (state.failed) return;
+			match(input,16,FOLLOW_16_in_probability_map253); if (state.failed) return;
 			}
 
 		}
@@ -636,98 +610,70 @@ public class ToPSParser extends Parser {
 
 
 	// $ANTLR start "probabilities_list"
-	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:67:1: probabilities_list : ( ( probability ';' )+ | ( probability ';' )* probability );
+	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:68:1: probabilities_list : STRING ':' probability_number ( ';' probability )* ( ';' )? ;
 	public final void probabilities_list() throws RecognitionException {
+		Token STRING9=null;
+		ParserRuleReturnScope probability_number10 =null;
+
 		try {
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:67:20: ( ( probability ';' )+ | ( probability ';' )* probability )
-			int alt8=2;
-			alt8 = dfa8.predict(input);
-			switch (alt8) {
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:68:20: ( STRING ':' probability_number ( ';' probability )* ( ';' )? )
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:68:22: STRING ':' probability_number ( ';' probability )* ( ';' )?
+			{
+			STRING9=(Token)match(input,STRING,FOLLOW_STRING_in_probabilities_list264); if (state.failed) return;
+			match(input,18,FOLLOW_18_in_probabilities_list266); if (state.failed) return;
+			pushFollow(FOLLOW_probability_number_in_probabilities_list268);
+			probability_number10=probability_number();
+			state._fsp--;
+			if (state.failed) return;
+			if ( state.backtracking==0 ) {dblmap = new HashMap<String,Double>(); dblmap.put((STRING9!=null?STRING9.getText():null), Double.parseDouble((probability_number10!=null?input.toString(probability_number10.start,probability_number10.stop):null)));}
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:68:165: ( ';' probability )*
+			loop5:
+			while (true) {
+				int alt5=2;
+				int LA5_0 = input.LA(1);
+				if ( (LA5_0==19) ) {
+					int LA5_1 = input.LA(2);
+					if ( (LA5_1==STRING) ) {
+						alt5=1;
+					}
+
+				}
+
+				switch (alt5) {
 				case 1 :
-					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:67:22: ( probability ';' )+
+					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:68:166: ';' probability
 					{
-					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:67:22: ( probability ';' )+
-					int cnt6=0;
-					loop6:
-					while (true) {
-						int alt6=2;
-						int LA6_0 = input.LA(1);
-						if ( (LA6_0==STRING) ) {
-							alt6=1;
-						}
-
-						switch (alt6) {
-						case 1 :
-							// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:67:23: probability ';'
-							{
-							pushFollow(FOLLOW_probability_in_probabilities_list248);
-							probability();
-							state._fsp--;
-							if (state.failed) return;
-							match(input,18,FOLLOW_18_in_probabilities_list250); if (state.failed) return;
-							}
-							break;
-
-						default :
-							if ( cnt6 >= 1 ) break loop6;
-							if (state.backtracking>0) {state.failed=true; return;}
-							EarlyExitException eee = new EarlyExitException(6, input);
-							throw eee;
-						}
-						cnt6++;
-					}
-
-					}
-					break;
-				case 2 :
-					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:68:8: ( probability ';' )* probability
-					{
-					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:68:8: ( probability ';' )*
-					loop7:
-					while (true) {
-						int alt7=2;
-						int LA7_0 = input.LA(1);
-						if ( (LA7_0==STRING) ) {
-							int LA7_1 = input.LA(2);
-							if ( (LA7_1==17) ) {
-								int LA7_2 = input.LA(3);
-								if ( (LA7_2==FLOAT||LA7_2==INT) ) {
-									int LA7_3 = input.LA(4);
-									if ( (LA7_3==18) ) {
-										alt7=1;
-									}
-
-								}
-
-							}
-
-						}
-
-						switch (alt7) {
-						case 1 :
-							// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:68:9: probability ';'
-							{
-							pushFollow(FOLLOW_probability_in_probabilities_list262);
-							probability();
-							state._fsp--;
-							if (state.failed) return;
-							match(input,18,FOLLOW_18_in_probabilities_list264); if (state.failed) return;
-							}
-							break;
-
-						default :
-							break loop7;
-						}
-					}
-
-					pushFollow(FOLLOW_probability_in_probabilities_list268);
+					match(input,19,FOLLOW_19_in_probabilities_list273); if (state.failed) return;
+					pushFollow(FOLLOW_probability_in_probabilities_list275);
 					probability();
 					state._fsp--;
 					if (state.failed) return;
 					}
 					break;
 
+				default :
+					break loop5;
+				}
 			}
+
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:68:185: ( ';' )?
+			int alt6=2;
+			int LA6_0 = input.LA(1);
+			if ( (LA6_0==19) ) {
+				alt6=1;
+			}
+			switch (alt6) {
+				case 1 :
+					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:68:185: ';'
+					{
+					match(input,19,FOLLOW_19_in_probabilities_list280); if (state.failed) return;
+					}
+					break;
+
+			}
+
+			}
+
 		}
 		catch (RecognitionException re) {
 			reportError(re);
@@ -742,18 +688,22 @@ public class ToPSParser extends Parser {
 
 
 	// $ANTLR start "probability"
-	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:70:1: probability : STRING ':' probability_number ;
+	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:71:1: probability : STRING ':' probability_number ;
 	public final void probability() throws RecognitionException {
+		Token STRING11=null;
+		ParserRuleReturnScope probability_number12 =null;
+
 		try {
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:70:12: ( STRING ':' probability_number )
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:70:14: STRING ':' probability_number
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:71:12: ( STRING ':' probability_number )
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:71:14: STRING ':' probability_number
 			{
-			match(input,STRING,FOLLOW_STRING_in_probability280); if (state.failed) return;
-			match(input,17,FOLLOW_17_in_probability282); if (state.failed) return;
-			pushFollow(FOLLOW_probability_number_in_probability284);
-			probability_number();
+			STRING11=(Token)match(input,STRING,FOLLOW_STRING_in_probability289); if (state.failed) return;
+			match(input,18,FOLLOW_18_in_probability291); if (state.failed) return;
+			pushFollow(FOLLOW_probability_number_in_probability293);
+			probability_number12=probability_number();
 			state._fsp--;
 			if (state.failed) return;
+			if ( state.backtracking==0 ) {dblmap.put((STRING11!=null?STRING11.getText():null), Double.parseDouble((probability_number12!=null?input.toString(probability_number12.start,probability_number12.stop):null)));}
 			}
 
 		}
@@ -770,18 +720,18 @@ public class ToPSParser extends Parser {
 
 
 	// $ANTLR start "conditional_probability_map"
-	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:72:1: conditional_probability_map : '(' conditional_probabilities_list ')' ;
+	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:73:1: conditional_probability_map : '(' conditional_probabilities_list ')' ;
 	public final void conditional_probability_map() throws RecognitionException {
 		try {
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:72:28: ( '(' conditional_probabilities_list ')' )
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:72:30: '(' conditional_probabilities_list ')'
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:73:28: ( '(' conditional_probabilities_list ')' )
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:73:30: '(' conditional_probabilities_list ')'
 			{
-			match(input,15,FOLLOW_15_in_conditional_probability_map292); if (state.failed) return;
-			pushFollow(FOLLOW_conditional_probabilities_list_in_conditional_probability_map294);
+			match(input,15,FOLLOW_15_in_conditional_probability_map303); if (state.failed) return;
+			pushFollow(FOLLOW_conditional_probabilities_list_in_conditional_probability_map305);
 			conditional_probabilities_list();
 			state._fsp--;
 			if (state.failed) return;
-			match(input,16,FOLLOW_16_in_conditional_probability_map296); if (state.failed) return;
+			match(input,16,FOLLOW_16_in_conditional_probability_map307); if (state.failed) return;
 			}
 
 		}
@@ -798,77 +748,66 @@ public class ToPSParser extends Parser {
 
 
 	// $ANTLR start "conditional_probabilities_list"
-	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:75:1: conditional_probabilities_list : ( conditional_probability ';' )+ ( conditional_probability )? ;
+	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:76:1: conditional_probabilities_list : condition ':' probability_number ( ';' conditional_probability )* ( ';' )? ;
 	public final void conditional_probabilities_list() throws RecognitionException {
+		ParserRuleReturnScope condition13 =null;
+		ParserRuleReturnScope probability_number14 =null;
+
 		try {
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:75:31: ( ( conditional_probability ';' )+ ( conditional_probability )? )
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:75:34: ( conditional_probability ';' )+ ( conditional_probability )?
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:76:31: ( condition ':' probability_number ( ';' conditional_probability )* ( ';' )? )
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:76:34: condition ':' probability_number ( ';' conditional_probability )* ( ';' )?
 			{
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:75:34: ( conditional_probability ';' )+
-			int cnt9=0;
-			loop9:
+			pushFollow(FOLLOW_condition_in_conditional_probabilities_list317);
+			condition13=condition();
+			state._fsp--;
+			if (state.failed) return;
+			match(input,18,FOLLOW_18_in_conditional_probabilities_list319); if (state.failed) return;
+			pushFollow(FOLLOW_probability_number_in_conditional_probabilities_list321);
+			probability_number14=probability_number();
+			state._fsp--;
+			if (state.failed) return;
+			if ( state.backtracking==0 ) {dblmap = new HashMap<String,Double>(); dblmap.put((condition13!=null?input.toString(condition13.start,condition13.stop):null), Double.parseDouble((probability_number14!=null?input.toString(probability_number14.start,probability_number14.stop):null)));}
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:76:183: ( ';' conditional_probability )*
+			loop7:
 			while (true) {
-				int alt9=2;
-				int LA9_0 = input.LA(1);
-				if ( (LA9_0==STRING) ) {
-					int LA9_1 = input.LA(2);
-					if ( (LA9_1==22) ) {
-						int LA9_3 = input.LA(3);
-						if ( (LA9_3==STRING) ) {
-							int LA9_4 = input.LA(4);
-							if ( (LA9_4==17) ) {
-								int LA9_5 = input.LA(5);
-								if ( (LA9_5==FLOAT||LA9_5==INT) ) {
-									int LA9_6 = input.LA(6);
-									if ( (LA9_6==18) ) {
-										alt9=1;
-									}
-
-								}
-
-							}
-
-						}
-
+				int alt7=2;
+				int LA7_0 = input.LA(1);
+				if ( (LA7_0==19) ) {
+					int LA7_1 = input.LA(2);
+					if ( (LA7_1==STRING) ) {
+						alt7=1;
 					}
 
 				}
 
-				switch (alt9) {
+				switch (alt7) {
 				case 1 :
-					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:75:35: conditional_probability ';'
+					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:76:184: ';' conditional_probability
 					{
-					pushFollow(FOLLOW_conditional_probability_in_conditional_probabilities_list307);
+					match(input,19,FOLLOW_19_in_conditional_probabilities_list326); if (state.failed) return;
+					pushFollow(FOLLOW_conditional_probability_in_conditional_probabilities_list329);
 					conditional_probability();
 					state._fsp--;
 					if (state.failed) return;
-					match(input,18,FOLLOW_18_in_conditional_probabilities_list309); if (state.failed) return;
 					}
 					break;
 
 				default :
-					if ( cnt9 >= 1 ) break loop9;
-					if (state.backtracking>0) {state.failed=true; return;}
-					EarlyExitException eee = new EarlyExitException(9, input);
-					throw eee;
+					break loop7;
 				}
-				cnt9++;
 			}
 
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:75:65: ( conditional_probability )?
-			int alt10=2;
-			int LA10_0 = input.LA(1);
-			if ( (LA10_0==STRING) ) {
-				alt10=1;
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:76:215: ( ';' )?
+			int alt8=2;
+			int LA8_0 = input.LA(1);
+			if ( (LA8_0==19) ) {
+				alt8=1;
 			}
-			switch (alt10) {
+			switch (alt8) {
 				case 1 :
-					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:75:65: conditional_probability
+					// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:76:215: ';'
 					{
-					pushFollow(FOLLOW_conditional_probability_in_conditional_probabilities_list313);
-					conditional_probability();
-					state._fsp--;
-					if (state.failed) return;
+					match(input,19,FOLLOW_19_in_conditional_probabilities_list333); if (state.failed) return;
 					}
 					break;
 
@@ -890,21 +829,25 @@ public class ToPSParser extends Parser {
 
 
 	// $ANTLR start "conditional_probability"
-	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:77:1: conditional_probability : condition ':' probability_number ;
+	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:78:1: conditional_probability : condition ':' probability_number ;
 	public final void conditional_probability() throws RecognitionException {
+		ParserRuleReturnScope condition15 =null;
+		ParserRuleReturnScope probability_number16 =null;
+
 		try {
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:77:24: ( condition ':' probability_number )
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:77:26: condition ':' probability_number
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:78:24: ( condition ':' probability_number )
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:78:26: condition ':' probability_number
 			{
-			pushFollow(FOLLOW_condition_in_conditional_probability322);
-			condition();
+			pushFollow(FOLLOW_condition_in_conditional_probability342);
+			condition15=condition();
 			state._fsp--;
 			if (state.failed) return;
-			match(input,17,FOLLOW_17_in_conditional_probability324); if (state.failed) return;
-			pushFollow(FOLLOW_probability_number_in_conditional_probability326);
-			probability_number();
+			match(input,18,FOLLOW_18_in_conditional_probability344); if (state.failed) return;
+			pushFollow(FOLLOW_probability_number_in_conditional_probability346);
+			probability_number16=probability_number();
 			state._fsp--;
 			if (state.failed) return;
+			if ( state.backtracking==0 ) {dblmap.put((condition15!=null?input.toString(condition15.start,condition15.stop):null), Double.parseDouble((probability_number16!=null?input.toString(probability_number16.start,probability_number16.stop):null)));}
 			}
 
 		}
@@ -919,18 +862,26 @@ public class ToPSParser extends Parser {
 	// $ANTLR end "conditional_probability"
 
 
+	public static class condition_return extends ParserRuleReturnScope {
+	};
+
 
 	// $ANTLR start "condition"
-	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:79:1: condition : STRING '|' STRING ;
-	public final void condition() throws RecognitionException {
+	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:80:1: condition : STRING '|' STRING ;
+	public final ToPSParser.condition_return condition() throws RecognitionException {
+		ToPSParser.condition_return retval = new ToPSParser.condition_return();
+		retval.start = input.LT(1);
+
 		try {
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:79:10: ( STRING '|' STRING )
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:79:12: STRING '|' STRING
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:80:10: ( STRING '|' STRING )
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:80:12: STRING '|' STRING
 			{
-			match(input,STRING,FOLLOW_STRING_in_condition334); if (state.failed) return;
-			match(input,22,FOLLOW_22_in_condition336); if (state.failed) return;
-			match(input,STRING,FOLLOW_STRING_in_condition338); if (state.failed) return;
+			match(input,STRING,FOLLOW_STRING_in_condition356); if (state.failed) return retval;
+			match(input,23,FOLLOW_23_in_condition358); if (state.failed) return retval;
+			match(input,STRING,FOLLOW_STRING_in_condition360); if (state.failed) return retval;
 			}
+
+			retval.stop = input.LT(-1);
 
 		}
 		catch (RecognitionException re) {
@@ -940,16 +891,23 @@ public class ToPSParser extends Parser {
 		finally {
 			// do for sure before leaving
 		}
+		return retval;
 	}
 	// $ANTLR end "condition"
 
 
+	public static class probability_number_return extends ParserRuleReturnScope {
+	};
+
 
 	// $ANTLR start "probability_number"
-	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:80:1: probability_number : ( INT | FLOAT );
-	public final void probability_number() throws RecognitionException {
+	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:81:1: probability_number : ( INT | FLOAT );
+	public final ToPSParser.probability_number_return probability_number() throws RecognitionException {
+		ToPSParser.probability_number_return retval = new ToPSParser.probability_number_return();
+		retval.start = input.LT(1);
+
 		try {
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:80:20: ( INT | FLOAT )
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:81:20: ( INT | FLOAT )
 			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:
 			{
 			if ( input.LA(1)==FLOAT||input.LA(1)==INT ) {
@@ -958,11 +916,13 @@ public class ToPSParser extends Parser {
 				state.failed=false;
 			}
 			else {
-				if (state.backtracking>0) {state.failed=true; return;}
+				if (state.backtracking>0) {state.failed=true; return retval;}
 				MismatchedSetException mse = new MismatchedSetException(null,input);
 				throw mse;
 			}
 			}
+
+			retval.stop = input.LT(-1);
 
 		}
 		catch (RecognitionException re) {
@@ -972,24 +932,25 @@ public class ToPSParser extends Parser {
 		finally {
 			// do for sure before leaving
 		}
+		return retval;
 	}
 	// $ANTLR end "probability_number"
 
 
 
 	// $ANTLR start "sub_model"
-	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:81:1: sub_model : '[' properties ']' ;
+	// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:82:1: sub_model : '[' properties ']' ;
 	public final void sub_model() throws RecognitionException {
 		try {
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:81:11: ( '[' properties ']' )
-			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:81:13: '[' properties ']'
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:82:11: ( '[' properties ']' )
+			// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:82:13: '[' properties ']'
 			{
-			match(input,20,FOLLOW_20_in_sub_model357); if (state.failed) return;
-			pushFollow(FOLLOW_properties_in_sub_model359);
+			match(input,21,FOLLOW_21_in_sub_model379); if (state.failed) return;
+			pushFollow(FOLLOW_properties_in_sub_model381);
 			properties();
 			state._fsp--;
 			if (state.failed) return;
-			match(input,21,FOLLOW_21_in_sub_model361); if (state.failed) return;
+			match(input,22,FOLLOW_22_in_sub_model383); if (state.failed) return;
 			}
 
 		}
@@ -1003,97 +964,14 @@ public class ToPSParser extends Parser {
 	}
 	// $ANTLR end "sub_model"
 
-	// $ANTLR start synpred10_ToPS
-	public final void synpred10_ToPS_fragment() throws RecognitionException {
-		// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:49:4: ( FLOAT )
-		// /Users/yoshiaki/NetBeansProjects/ToPS_Parser/ToPS.g:49:4: FLOAT
-		{
-		match(input,FLOAT,FOLLOW_FLOAT_in_synpred10_ToPS154); if (state.failed) return;
-		}
-
-	}
-	// $ANTLR end synpred10_ToPS
-
 	// Delegated rules
 
-	public final boolean synpred10_ToPS() {
-		state.backtracking++;
-		int start = input.mark();
-		try {
-			synpred10_ToPS_fragment(); // can never throw exception
-		} catch (RecognitionException re) {
-			System.err.println("impossible: "+re);
-		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed=false;
-		return success;
-	}
 
-
-	protected DFA8 dfa8 = new DFA8(this);
-	static final String DFA8_eotS =
-		"\7\uffff";
-	static final String DFA8_eofS =
-		"\7\uffff";
-	static final String DFA8_minS =
-		"\1\14\1\21\1\6\1\20\1\14\2\uffff";
-	static final String DFA8_maxS =
-		"\1\14\1\21\1\11\1\22\1\20\2\uffff";
-	static final String DFA8_acceptS =
-		"\5\uffff\1\2\1\1";
-	static final String DFA8_specialS =
-		"\7\uffff}>";
-	static final String[] DFA8_transitionS = {
-			"\1\1",
-			"\1\2",
-			"\1\3\2\uffff\1\3",
-			"\1\5\1\uffff\1\4",
-			"\1\1\3\uffff\1\6",
-			"",
-			""
-	};
-
-	static final short[] DFA8_eot = DFA.unpackEncodedString(DFA8_eotS);
-	static final short[] DFA8_eof = DFA.unpackEncodedString(DFA8_eofS);
-	static final char[] DFA8_min = DFA.unpackEncodedStringToUnsignedChars(DFA8_minS);
-	static final char[] DFA8_max = DFA.unpackEncodedStringToUnsignedChars(DFA8_maxS);
-	static final short[] DFA8_accept = DFA.unpackEncodedString(DFA8_acceptS);
-	static final short[] DFA8_special = DFA.unpackEncodedString(DFA8_specialS);
-	static final short[][] DFA8_transition;
-
-	static {
-		int numStates = DFA8_transitionS.length;
-		DFA8_transition = new short[numStates][];
-		for (int i=0; i<numStates; i++) {
-			DFA8_transition[i] = DFA.unpackEncodedString(DFA8_transitionS[i]);
-		}
-	}
-
-	protected class DFA8 extends DFA {
-
-		public DFA8(BaseRecognizer recognizer) {
-			this.recognizer = recognizer;
-			this.decisionNumber = 8;
-			this.eot = DFA8_eot;
-			this.eof = DFA8_eof;
-			this.min = DFA8_min;
-			this.max = DFA8_max;
-			this.accept = DFA8_accept;
-			this.special = DFA8_special;
-			this.transition = DFA8_transition;
-		}
-		@Override
-		public String getDescription() {
-			return "67:1: probabilities_list : ( ( probability ';' )+ | ( probability ';' )* probability );";
-		}
-	}
 
 	public static final BitSet FOLLOW_properties_in_model40 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_property_in_properties51 = new BitSet(new long[]{0x0000000000000102L});
-	public static final BitSet FOLLOW_ID_in_property61 = new BitSet(new long[]{0x0000000000080000L});
-	public static final BitSet FOLLOW_19_in_property63 = new BitSet(new long[]{0x0000000000109340L});
+	public static final BitSet FOLLOW_ID_in_property61 = new BitSet(new long[]{0x0000000000100000L});
+	public static final BitSet FOLLOW_20_in_property63 = new BitSet(new long[]{0x0000000000209340L});
 	public static final BitSet FOLLOW_value_in_property65 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_STRING_in_value75 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_INT_in_value82 = new BitSet(new long[]{0x0000000000000002L});
@@ -1101,46 +979,51 @@ public class ToPSParser extends Parser {
 	public static final BitSet FOLLOW_list_str_in_value96 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_list_double_in_value103 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_probability_map_in_value110 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_conditional_probability_map_in_value115 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_sub_model_in_value120 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ID_in_value125 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_15_in_list_double139 = new BitSet(new long[]{0x0000000000010040L});
-	public static final BitSet FOLLOW_list_double_elements_in_list_double141 = new BitSet(new long[]{0x0000000000010000L});
-	public static final BitSet FOLLOW_16_in_list_double143 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_FLOAT_in_list_double_elements154 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_list_double_element_in_list_double_elements161 = new BitSet(new long[]{0x0000000000000042L});
-	public static final BitSet FOLLOW_FLOAT_in_list_double_element174 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_15_in_list_str190 = new BitSet(new long[]{0x0000000000001000L});
-	public static final BitSet FOLLOW_list_str_elements_in_list_str192 = new BitSet(new long[]{0x0000000000010000L});
-	public static final BitSet FOLLOW_16_in_list_str194 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_STRING_in_list_str_elements204 = new BitSet(new long[]{0x0000000000001002L});
-	public static final BitSet FOLLOW_list_str_element_in_list_str_elements208 = new BitSet(new long[]{0x0000000000001002L});
-	public static final BitSet FOLLOW_STRING_in_list_str_element220 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_15_in_probability_map232 = new BitSet(new long[]{0x0000000000001000L});
-	public static final BitSet FOLLOW_probabilities_list_in_probability_map234 = new BitSet(new long[]{0x0000000000010000L});
-	public static final BitSet FOLLOW_16_in_probability_map236 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_probability_in_probabilities_list248 = new BitSet(new long[]{0x0000000000040000L});
-	public static final BitSet FOLLOW_18_in_probabilities_list250 = new BitSet(new long[]{0x0000000000001002L});
-	public static final BitSet FOLLOW_probability_in_probabilities_list262 = new BitSet(new long[]{0x0000000000040000L});
-	public static final BitSet FOLLOW_18_in_probabilities_list264 = new BitSet(new long[]{0x0000000000001000L});
-	public static final BitSet FOLLOW_probability_in_probabilities_list268 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_STRING_in_probability280 = new BitSet(new long[]{0x0000000000020000L});
-	public static final BitSet FOLLOW_17_in_probability282 = new BitSet(new long[]{0x0000000000000240L});
-	public static final BitSet FOLLOW_probability_number_in_probability284 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_15_in_conditional_probability_map292 = new BitSet(new long[]{0x0000000000001000L});
-	public static final BitSet FOLLOW_conditional_probabilities_list_in_conditional_probability_map294 = new BitSet(new long[]{0x0000000000010000L});
-	public static final BitSet FOLLOW_16_in_conditional_probability_map296 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_conditional_probability_in_conditional_probabilities_list307 = new BitSet(new long[]{0x0000000000040000L});
-	public static final BitSet FOLLOW_18_in_conditional_probabilities_list309 = new BitSet(new long[]{0x0000000000001002L});
-	public static final BitSet FOLLOW_conditional_probability_in_conditional_probabilities_list313 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_condition_in_conditional_probability322 = new BitSet(new long[]{0x0000000000020000L});
-	public static final BitSet FOLLOW_17_in_conditional_probability324 = new BitSet(new long[]{0x0000000000000240L});
-	public static final BitSet FOLLOW_probability_number_in_conditional_probability326 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_STRING_in_condition334 = new BitSet(new long[]{0x0000000000400000L});
-	public static final BitSet FOLLOW_22_in_condition336 = new BitSet(new long[]{0x0000000000001000L});
-	public static final BitSet FOLLOW_STRING_in_condition338 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_20_in_sub_model357 = new BitSet(new long[]{0x0000000000000100L});
-	public static final BitSet FOLLOW_properties_in_sub_model359 = new BitSet(new long[]{0x0000000000200000L});
-	public static final BitSet FOLLOW_21_in_sub_model361 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_FLOAT_in_synpred10_ToPS154 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_conditional_probability_map_in_value117 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_sub_model_in_value124 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ID_in_value129 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_15_in_list_double143 = new BitSet(new long[]{0x0000000000000040L});
+	public static final BitSet FOLLOW_list_double_elements_in_list_double145 = new BitSet(new long[]{0x0000000000010000L});
+	public static final BitSet FOLLOW_16_in_list_double147 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_FLOAT_in_list_double_elements158 = new BitSet(new long[]{0x0000000000020002L});
+	public static final BitSet FOLLOW_17_in_list_double_elements163 = new BitSet(new long[]{0x0000000000000040L});
+	public static final BitSet FOLLOW_list_double_element_in_list_double_elements165 = new BitSet(new long[]{0x0000000000020002L});
+	public static final BitSet FOLLOW_FLOAT_in_list_double_element187 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_15_in_list_str203 = new BitSet(new long[]{0x0000000000001000L});
+	public static final BitSet FOLLOW_list_str_elements_in_list_str205 = new BitSet(new long[]{0x0000000000010000L});
+	public static final BitSet FOLLOW_16_in_list_str207 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_STRING_in_list_str_elements217 = new BitSet(new long[]{0x0000000000020002L});
+	public static final BitSet FOLLOW_17_in_list_str_elements222 = new BitSet(new long[]{0x0000000000001000L});
+	public static final BitSet FOLLOW_list_str_element_in_list_str_elements224 = new BitSet(new long[]{0x0000000000020002L});
+	public static final BitSet FOLLOW_STRING_in_list_str_element237 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_15_in_probability_map249 = new BitSet(new long[]{0x0000000000001000L});
+	public static final BitSet FOLLOW_probabilities_list_in_probability_map251 = new BitSet(new long[]{0x0000000000010000L});
+	public static final BitSet FOLLOW_16_in_probability_map253 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_STRING_in_probabilities_list264 = new BitSet(new long[]{0x0000000000040000L});
+	public static final BitSet FOLLOW_18_in_probabilities_list266 = new BitSet(new long[]{0x0000000000000240L});
+	public static final BitSet FOLLOW_probability_number_in_probabilities_list268 = new BitSet(new long[]{0x0000000000080002L});
+	public static final BitSet FOLLOW_19_in_probabilities_list273 = new BitSet(new long[]{0x0000000000001000L});
+	public static final BitSet FOLLOW_probability_in_probabilities_list275 = new BitSet(new long[]{0x0000000000080002L});
+	public static final BitSet FOLLOW_19_in_probabilities_list280 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_STRING_in_probability289 = new BitSet(new long[]{0x0000000000040000L});
+	public static final BitSet FOLLOW_18_in_probability291 = new BitSet(new long[]{0x0000000000000240L});
+	public static final BitSet FOLLOW_probability_number_in_probability293 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_15_in_conditional_probability_map303 = new BitSet(new long[]{0x0000000000001000L});
+	public static final BitSet FOLLOW_conditional_probabilities_list_in_conditional_probability_map305 = new BitSet(new long[]{0x0000000000010000L});
+	public static final BitSet FOLLOW_16_in_conditional_probability_map307 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_condition_in_conditional_probabilities_list317 = new BitSet(new long[]{0x0000000000040000L});
+	public static final BitSet FOLLOW_18_in_conditional_probabilities_list319 = new BitSet(new long[]{0x0000000000000240L});
+	public static final BitSet FOLLOW_probability_number_in_conditional_probabilities_list321 = new BitSet(new long[]{0x0000000000080002L});
+	public static final BitSet FOLLOW_19_in_conditional_probabilities_list326 = new BitSet(new long[]{0x0000000000001000L});
+	public static final BitSet FOLLOW_conditional_probability_in_conditional_probabilities_list329 = new BitSet(new long[]{0x0000000000080002L});
+	public static final BitSet FOLLOW_19_in_conditional_probabilities_list333 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_condition_in_conditional_probability342 = new BitSet(new long[]{0x0000000000040000L});
+	public static final BitSet FOLLOW_18_in_conditional_probability344 = new BitSet(new long[]{0x0000000000000240L});
+	public static final BitSet FOLLOW_probability_number_in_conditional_probability346 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_STRING_in_condition356 = new BitSet(new long[]{0x0000000000800000L});
+	public static final BitSet FOLLOW_23_in_condition358 = new BitSet(new long[]{0x0000000000001000L});
+	public static final BitSet FOLLOW_STRING_in_condition360 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_21_in_sub_model379 = new BitSet(new long[]{0x0000000000000100L});
+	public static final BitSet FOLLOW_properties_in_sub_model381 = new BitSet(new long[]{0x0000000000400000L});
+	public static final BitSet FOLLOW_22_in_sub_model383 = new BitSet(new long[]{0x0000000000000002L});
 }

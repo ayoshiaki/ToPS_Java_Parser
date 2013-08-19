@@ -4,6 +4,7 @@
  */
 package tops.parser;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -14,11 +15,19 @@ public class DoubleMapParameterValue extends ProbabilisticModelParameterValue {
 
     private HashMap<String, Double> v;
 
+     public DoubleMapParameterValue removeQuotes() {
+        HashMap<String,Double> newMap = new HashMap<String,Double>();
+        for (String s : v.keySet()) {
+            newMap.put(s.replaceAll("\"", ""), v.get(s));
+        }
+        v = newMap;
+        return this;
+    }
     public String getParameterType() {
         return "DoubleMap";
     }
 
-    void initialize(HashMap<String, Double> value) {
+    DoubleMapParameterValue(HashMap<String, Double> value) {
         v = value;
     }
 
