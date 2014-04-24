@@ -19,11 +19,13 @@ public class Teste {
     public static void main(String args[]) throws Exception {
         ConfigurationReader reader = new ConfigurationReader();
         ProbabilisticModelParameters params = reader.load("/Users/yoshiaki/input.txt");
+        
         ProbabilisticModelParameterValue v = params.getMandatoryParameterValue("teste_d");
         ArrayList<Double> a = v.getDoubleVector();
         for (Double e : a) {
             System.out.println("e: " + e);
         }
+        
         v = params.getOptionalParameterValue("teste");
         ArrayList<String> strs = v.getStringVector();
         for (String e : strs) {
@@ -40,8 +42,8 @@ public class Teste {
         for (String e : prob_map.keySet()) {
             String partA = "", partB = "";
             String[] parts = e.split("\\|");
-            partA = parts[0];
-            partB = parts[1];
+            partA = parts[0].trim();
+            partB = parts[1].trim();
             System.out.println("a: " + partA + " b: " + partB + " prob: " + prob_map.get(e));
         }
         v = params.getOptionalParameterValue("lixao");

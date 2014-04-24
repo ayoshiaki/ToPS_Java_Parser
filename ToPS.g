@@ -1,16 +1,10 @@
 grammar ToPS;
 
-options {
-backtrack=true;
-}
 @header{
 package tops.parser;
 import java.util.ArrayList;
 }
 
-@lexer::header {
-package tops.parser;
-}
 
 @members {
 private ProbabilisticModelParameters parameters = new ProbabilisticModelParameters();
@@ -21,7 +15,6 @@ private HashMap<String,Double> dblmap;
 public ProbabilisticModelParameters getParameters() {
   return parameters;
 }
-
 }
 
 
@@ -82,8 +75,9 @@ probability_number : INT | FLOAT ;
 sub_model : '[' properties ']'
 ;	
 
-LINE_COMMENT : '#' .* '\n';
-WS 	:	(' '|'\r'|'\t'|'\n')+ {$channel=HIDDEN;}
+
+LINE_COMMENT : '#' .*? '\n';
+WS 	:	(' '|'\r'|'\t'|'\n')+ -> skip
     ;
 
 ID  :	('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
@@ -126,3 +120,5 @@ fragment
 UNICODE_ESC
     :   '\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
     ;
+
+
